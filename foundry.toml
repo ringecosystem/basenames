@@ -4,12 +4,17 @@ out = "out"
 libs = ["lib"]
 remappings = ["@ensdomains/buffer/=lib/buffer"]
 fs_permissions = [{access = "read", path = "./script/premint/"}]
+sender = "0x7aE77149ed38c5dD313e9069d790Ce7085caf0A6"
+# eth_rpc_url  = "https://crab-rpc.darwinia.network"
 
 [rpc_endpoints]
-sepolia="${SEPOLIA_RPC_URL}"
-base-sepolia="${BASE_SEPOLIA_RPC_URL}"
+koi = "https://koi-rpc.darwinia.network"
+crab = "https://crab-rpc.darwinia.network"
+darwinia = "https://rpc.darwinia.network"
+sepolia = "https://sepolia.infura.io/v3/${INFURA_KEY}"
 
 [etherscan]
-sepolia={url = "https://api-sepolia.etherscan.io/api", key = "${ETHERSCAN_API_KEY}"}
-base-sepolia={url = "https://api-sepolia.basescan.org/api", key = "${BASE_ETHERSCAN_API_KEY}"}
-
+koi = { key = "xxx", url = "https://koi-scan.darwinia.network/api", chain = 701 }
+crab = { key = "xxx", url = "https://crab-scan.darwinia.network/api", chain = 44 }
+darwinia = { key = "xxx", url = "https://explorer.darwinia.network/api", chain = 46 }
+sepolia = { key = "${ETHERSCAN_API_KEY}" }

@@ -6,15 +6,14 @@ import "src/L1/L1Resolver.sol";
 
 contract DeployL1Resolver is Script {
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address deployerAddresss = vm.addr(deployerPrivateKey);
-        vm.startBroadcast(deployerPrivateKey);
+        address deployerAddresss = msg.sender;
+        vm.startBroadcast();
 
         /// L1 Resolver constructor data
         string memory url =
             "https://api-entry-gateway-development.cbhq.net/api/v1/subdomain/resolver/resolveDomain/{sender}/{data}"; //
         address[] memory signers = new address[](1);
-        signers[0] = 0xa412c16ECd2198A6aBce8235651E105684Fb77ed; // DEV signer
+        signers[0] = msg.sender; // DEV signer
         address owner = deployerAddresss;
         address rootResolver = 0x8FADE66B79cC9f707aB26799354482EB93a5B7dD; //basetest.eth root resolver on sepolia
 
