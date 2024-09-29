@@ -10,13 +10,12 @@ import {NameEncoder} from "ens-contracts/utils/NameEncoder.sol";
 
 contract DeployBaseRegistrar is Script {
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address deployerAddress = vm.addr(deployerPrivateKey);
-        vm.startBroadcast(deployerPrivateKey);
+        address deployerAddress = msg.sender;
+        vm.startBroadcast();
 
         /// L2 Resolver constructor data
         address ensAddress = vm.envAddress("REGISTRY_ADDR"); // deployer-owned registry
-        (, bytes32 node) = NameEncoder.dnsEncodeName("basetest.eth");
+        (, bytes32 node) = NameEncoder.dnsEncodeName("ring-dao.eth");
 
         BaseRegistrar base = new BaseRegistrar(ENS(ensAddress), deployerAddress, node, "", "");
 

@@ -9,9 +9,8 @@ import "src/util/Constants.sol";
 
 contract DeployReverseRegistrar is Script {
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address deployerAddress = vm.addr(deployerPrivateKey);
-        vm.startBroadcast(deployerPrivateKey);
+        address deployerAddress = msg.sender;
+        vm.startBroadcast();
 
         address ensAddress = vm.envAddress("REGISTRY_ADDR"); // deployer-owned registry
         Registry registry = Registry(ensAddress);
@@ -24,7 +23,7 @@ contract DeployReverseRegistrar is Script {
 
         // establish the reverse registrar as the owner of the 'addr.reverse' node
         bytes32 reverseLabel = keccak256("reverse");
-        bytes32 baseReverseLabel = keccak256("80002105");
+        bytes32 baseReverseLabel = keccak256("8000002e");
         registry.setSubnodeOwner(0x0, reverseLabel, deployerAddress);
         registry.setSubnodeOwner(REVERSE_NODE, baseReverseLabel, address(revRegstrar));
 

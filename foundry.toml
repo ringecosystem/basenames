@@ -4,12 +4,14 @@ out = "out"
 libs = ["lib"]
 remappings = ["@ensdomains/buffer/=lib/buffer"]
 fs_permissions = [{access = "read", path = "./script/premint/"}]
+evm_version = "london"
 sender = "0x7aE77149ed38c5dD313e9069d790Ce7085caf0A6"
-# eth_rpc_url  = "https://crab-rpc.darwinia.network"
+# eth_rpc_url  = "https://rpc.sepolia.org"
+eth_rpc_url  = "https://crab-rpc.darwinia.network"
 
 [rpc_endpoints]
 koi = "https://koi-rpc.darwinia.network"
-crab = "https://crab-rpc.darwinia.network"
+crab = "https://darwinia-rpc.itering.io"
 darwinia = "https://rpc.darwinia.network"
 sepolia = "https://sepolia.infura.io/v3/${INFURA_KEY}"
 

@@ -8,7 +8,7 @@ import "../../src/util/Constants.sol";
 
 
 contract ConstantsTest is Test {
-	function test_constants() public {
+	function test_constants() public view {
         (bytes memory dnsName, bytes32 node) = NameEncoder.dnsEncodeName("ring-dao.eth");
         console.logBytes(dnsName);
         console.logBytes32(node);

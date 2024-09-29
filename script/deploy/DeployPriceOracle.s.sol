@@ -8,8 +8,7 @@ import {ExponentialPremiumPriceOracle} from "src/L2/ExponentialPremiumPriceOracl
 
 contract DeployPriceOracle is Script {
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
+        vm.startBroadcast();
 
         uint256[] memory prices = new uint256[](6);
         prices[0] = 316_808_781_402;

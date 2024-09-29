@@ -15,16 +15,15 @@ import "src/util/Constants.sol";
 
 contract DeployRegistrarController is Script {
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address deployerAddress = vm.addr(deployerPrivateKey);
-        vm.startBroadcast(deployerPrivateKey);
+        address deployerAddress = msg.sender;
+        vm.startBroadcast();
 
         /// L2 Resolver constructor data
         address oracle = vm.envAddress("PRICE_ORACLE_ADDR");
         address reverse = vm.envAddress("REVERSE_REGISTRAR_ADDR"); // deployer-owned rev registrar
         address base = vm.envAddress("BASE_REGISTRAR_ADDR");
-        (, bytes32 rootNode) = NameEncoder.dnsEncodeName("basetest.eth");
-        string memory rootName = ".basetest.eth";
+        (, bytes32 rootNode) = NameEncoder.dnsEncodeName("ring-dao.eth");
+        string memory rootName = ".ring-dao.eth";
 
         RegistrarController controller = new RegistrarController(
             BaseRegistrar(base),
