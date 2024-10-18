@@ -24,8 +24,7 @@ contract RegisterNewName is Script {
     /////////////////////////////////////////////////////
 
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
+        vm.startBroadcast();
 
         address controllerAddr = vm.envAddress("REGISTRAR_CONTROLLER_ADDR");
         RegistrarController controller = RegistrarController(controllerAddr);
@@ -40,13 +39,14 @@ contract RegisterNewName is Script {
             reverseRecord: false
         });
 
-        controller.discountedRegister(request, discountKey, "");
+		uint price = controller.registerPrice(NAME, duration);
+        controller.register{value: price}(request);
 
         vm.stopBroadcast();
     }
 
     function _packResolverData() internal view returns (bytes[] memory) {
-        (, bytes32 rootNode) = NameEncoder.dnsEncodeName("basetest.eth");
+        (, bytes32 rootNode) = NameEncoder.dnsEncodeName("ring-dao.eth");
         bytes32 label = keccak256(bytes(NAME));
         bytes32 nodehash = keccak256(abi.encodePacked(rootNode, label));
 
