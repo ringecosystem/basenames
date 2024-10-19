@@ -24,7 +24,8 @@ contract RegisterNewName is Script {
     /////////////////////////////////////////////////////
 
     function run() external {
-        vm.startBroadcast();
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        vm.startBroadcast(deployerPrivateKey);
 
         address controllerAddr = vm.envAddress("REGISTRAR_CONTROLLER_ADDR");
         RegistrarController controller = RegistrarController(controllerAddr);
