@@ -102,6 +102,9 @@ contract RegistrarController is Ownable {
     /// @notice The minimum name length.
     uint256 public constant MIN_NAME_LENGTH = 3;
 
+    /// @notice The maximum name length.
+    uint256 public constant MAX_NAME_LENGTH = 21;
+
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          ERRORS                            */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
@@ -360,9 +363,9 @@ contract RegistrarController is Ownable {
     ///
     /// @param name The name to check the length of.
     ///
-    /// @return `true` if the name is equal to or longer than MIN_NAME_LENGTH, else `false`.
+    /// @return `true` if the MAX_NAME_LENGTH >= name >= MIN_NAME_LENGTH, else `false`.
     function valid(string memory name) public pure returns (bool) {
-        return name.strlen() >= MIN_NAME_LENGTH;
+        return name.strlen() >= MIN_NAME_LENGTH && name.strlen() <= MAX_NAME_LENGTH;
     }
 
     /// @notice Checks whether the provided `name` is available.
