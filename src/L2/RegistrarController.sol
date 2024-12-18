@@ -100,10 +100,10 @@ contract RegistrarController is Ownable {
     uint256 public constant MIN_REGISTRATION_DURATION = 365 days;
 
     /// @notice The minimum name length.
-    uint256 public constant MIN_NAME_LENGTH = 3;
+    uint256 public constant MIN_NAME_LENGTH = 5;
 
     /// @notice The maximum name length.
-    uint256 public constant MAX_NAME_LENGTH = 21;
+    uint256 public constant MAX_NAME_LENGTH = 41;
 
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          ERRORS                            */
