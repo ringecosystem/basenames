@@ -9,7 +9,7 @@ import "../../src/util/Constants.sol";
 
 contract ConstantsTest is Test {
 	function test_constants() public view {
-        (bytes memory dnsName, bytes32 node) = NameEncoder.dnsEncodeName("ring-dao.eth");
+        (bytes memory dnsName, bytes32 node) = NameEncoder.dnsEncodeName("darwinia.eth");
         console.logBytes(dnsName);
         console.logBytes32(node);
 
