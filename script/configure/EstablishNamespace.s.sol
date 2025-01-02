@@ -7,9 +7,8 @@ import "src/util/Constants.sol";
 
 contract EstablishNamespace is Script {
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address deployerAddress = vm.addr(deployerPrivateKey);
-        vm.startBroadcast(deployerPrivateKey);
+        address deployerAddress = msg.sender;
+        vm.startBroadcast();
 
         address ensAddress = vm.envAddress("REGISTRY_ADDR"); // deployer-owned registry
         Registry registry = Registry(ensAddress);
@@ -17,7 +16,7 @@ contract EstablishNamespace is Script {
 
         // establish the base.eth namespace
         bytes32 ethLabel = keccak256("eth");
-        bytes32 baseLabel = keccak256("basetest"); // basetest.eth is our sepolia test domain
+        bytes32 baseLabel = keccak256("darwinia"); // basetest.eth is our sepolia test domain
         registry.setSubnodeOwner(0x0, ethLabel, deployerAddress);
         registry.setSubnodeOwner(ETH_NODE, baseLabel, baseRegistrar); // base registrar must own 2LD
 
